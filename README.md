@@ -66,7 +66,7 @@ The `example` folder contains fully working code for uploading files. This code 
 
 This is a minimal and crude demonstration of file upload and not suitable for production.
 
-# [Documentation](/docs/index.html)
+# [Documentation](https://htmlpreview.github.io/?https://raw.githubusercontent.com/BennyThadikaran/ajax/main/docs/index.html)
 
 # Additional Notes
 
