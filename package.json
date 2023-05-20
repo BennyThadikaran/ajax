@@ -1,0 +1,31 @@
+{
+  "name": "ajax",
+  "version": "1.0.0",
+  "description": "A simple wrapper for making Ajax requests using fetch api.",
+  "main": "ajax.js",
+  "type": "module",
+  "scripts": {
+    "doc": "npx jsdoc -c jsdoc_conf.json src/ajax.js",
+    "test": "jest",
+    "postinstall": "cd example && npm install"
+  },
+  "keywords": [
+    "ajax",
+    "fetch",
+    "async",
+    "js",
+    "vanilla",
+    "javascript",
+    "es6"
+  ],
+  "author": "Benny Thadikaran",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jsdoc": "^4.0.0"
+  }
+}

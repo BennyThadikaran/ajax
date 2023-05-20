@@ -1,0 +1,14 @@
+{
+  "name": "fileupload",
+  "version": "1.0.0",
+  "description": "Example file upload using ajax.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Benny Thadikaran",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "busboy": "^1.6.0"
+  }
+}

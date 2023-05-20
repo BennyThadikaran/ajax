@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+    <style>
+      form {
+        margin-bottom: 2.5rem;
+      }
+      .label {
+        display: block;
+      }
+      .control {
+        margin-bottom: 1rem;
+      }
+      button {
+        background: skyblue;
+        letter-spacing: 0.05rem;
+        word-spacing: 0.1rem;
+      }
+      .success {
+        max-width: 325px;
+        background: #98fb98;
+        color: #191c27;
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example file upload using ajax.fileUpload</h1>
+    <form name="uploadOne">
+      <label for="sf1">Upload Single File: </label>
+      <input type="file" name="input" id="sf1" />
+      <div></div>
+      <button type="submit" name="btn">Upload File</button>
+    </form>
+
+    <form name="uploadMultiple">
+      <label for="mf1">Upload Multiple Files: </label>
+      <input type="file" name="input" id="mf1" multiple />
+      <div></div>
+      <button type="submit" name="btn">Upload Files</button>
+    </form>
+
+    <form name="uploadWithAddedContent">
+      <div class="control">
+        <label class="label" for="fname">First Name</label>
+        <input type="text" name="fname" id="fname" />
+      </div>
+
+      <div class="control">
+        <label class="label" for="lname">Last Name</label>
+        <input type="text" name="lname" id="fname" />
+      </div>
+
+      <div class="control">
+        <label for="mf1">Upload Multiple Files: </label>
+        <input type="file" name="input" id="mf1" multiple />
+      </div>
+      <div></div>
+      <button type="submit" name="btn">Submit</button>
+    </form>
+    <script src="/main.js" type="module"></script>
+  </body>
+</html>
