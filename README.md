@@ -77,3 +77,10 @@ By default,
 - `credentials` options passed to Fetch is set to `same-origin`
 
 Ajax module returns a freezed Object. The Object cannot be modified, deleted or added to.
+
+**If Content-Type header in response is set to:**
+
+- **application/json:** returns parsed json
+- **text/\*:** returns parsed text.
+- **multipart/form-data:** returns FormData object
+- **If none of the above matches**, returns the **[response.body](https://developer.mozilla.org/en-US/docs/Web/API/Response/body)** which is a **[ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)**. Handle this as required by your application.
