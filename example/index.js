@@ -1,19 +1,15 @@
 const http = require("http");
 const { join } = require("path");
-const { readFile } = require("fs/promises");
+const { open, readFile } = require("fs/promises");
 const busboy = require("busboy");
 
 const hostname = "127.0.0.1";
 const port = 3000;
 
-// return static file content like javascript
-const getStaticFile = async (url) => {
-  const filePath =
-    url === "/ajax/src/ajax.js"
-      ? join(__dirname, "../ajax/src/ajax.js")
-      : join(__dirname, "main.js");
-
-  return await readFile(filePath);
+// return file path for javascript file
+const getJSFile = (url) => {
+  if (url === "/main.js") return join(__dirname, "main.js");
+  return join(__dirname, "..", "src", "ajax.js");
 };
 
 const routes = {
@@ -68,8 +64,10 @@ const routes = {
   },
   js: async (req, res) => {
     res.statusCode = 200;
-    res.setHeader("Content-Type", "application/javascript");
-    res.end(await getStaticFile(req.url));
+    res.setHeader("Content-Type", "text/javascript");
+
+    const fd = await open(getJSFile(req.url));
+    fd.createReadStream().pipe(res);
   },
 };
 
