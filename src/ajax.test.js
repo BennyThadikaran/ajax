@@ -57,6 +57,50 @@ describe("ajax.get", () => {
 
     expect(fetch.mock.calls[0][1].headers["csrf"]).toBe("abc");
   });
+
+  test("GET request returns text for content-type text/plain", async () => {
+    const resObj = {
+      status: 200,
+      text: () => "foo",
+      headers: { get: () => "text/plain" },
+    };
+
+    global.fetch = jest.fn().mockResolvedValue(resObj);
+
+    const [, res] = await ajax.get("http://localhost");
+
+    expect(res).toBe("foo");
+  });
+
+  test("GET request returns FormData for content-type multipart/form-data", async () => {
+    const resObj = {
+      status: 200,
+      formData: () => new FormData(),
+      headers: { get: () => "multipart/form-data" },
+    };
+
+    global.fetch = jest.fn().mockResolvedValue(resObj);
+
+    const [, res] = await ajax.get("http://localhost");
+
+    expect(res instanceof FormData).toBe(true);
+  });
+
+  test("GET request returns ReadableStream if content-type not matching json, text or FormData", async () => {
+    class ReadableStream {}
+
+    const resObj = {
+      status: 200,
+      body: new ReadableStream(),
+      headers: { get: () => "application/octet-stream" },
+    };
+
+    global.fetch = jest.fn().mockResolvedValue(resObj);
+
+    const [, res] = await ajax.get("http://localhost");
+
+    expect(res instanceof ReadableStream).toBe(true);
+  });
 });
 
 describe("ajax.post", () => {
@@ -223,6 +267,17 @@ describe("ajax.uploadFile", () => {
       .catch((err) => err);
 
     expect(res.message).toBe("File or FileList object expected. Got Object");
+  });
+
+  test("Upload file with custom headers", async () => {
+    await ajax.uploadFile(
+      "http://localhost",
+      "POST",
+      new File(["foo"], "foo.txt"),
+      { csrf: "abc" }
+    );
+
+    expect(fetch.mock.calls[0][1].headers["csrf"]).toBe("abc");
   });
 });
 
