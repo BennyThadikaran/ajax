@@ -224,14 +224,13 @@ const ajax = (function () {
       .then(async (res) => {
         const contentType = res.headers.get("content-type");
 
-        const message =
-          contentType === "application/json"
-            ? await res.json()
-            : contentType.includes("text")
-            ? res.text()
-            : contentType === "multipart/form-data"
-            ? await res.formData()
-            : res.body; // returns a readableStream if not matching the above
+        const message = contentType.includes("application/json")
+          ? await res.json()
+          : contentType.includes("text")
+          ? res.text()
+          : contentType.includes("multipart/form-data")
+          ? await res.formData()
+          : res.body; // returns a readableStream if not matching the above
 
         return [res.status, message];
       })
