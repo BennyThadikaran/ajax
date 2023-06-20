@@ -227,7 +227,7 @@ const ajax = (function () {
         const message = contentType.includes("application/json")
           ? await res.json()
           : contentType.includes("text")
-          ? res.text()
+          ? await res.text()
           : contentType.includes("multipart/form-data")
           ? await res.formData()
           : res.body; // returns a readableStream if not matching the above
