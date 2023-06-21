@@ -112,6 +112,7 @@ const ajax = (function () {
    * @param {String} url
    * @param {String} method
    * @param {FormData|File|FileList} file
+   * @param {Object} [headers=null] http headers to be added
    * @return {Promise.Array} Promise resolved to an array [statusCode, response]
    * @memberof ajax
    */
